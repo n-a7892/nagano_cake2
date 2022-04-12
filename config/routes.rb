@@ -1,59 +1,67 @@
 Rails.application.routes.draw do
-  devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
 
-  devise_for :customers,skip:[:passwords], controllers: {
+  devise_for :customer,skip:[:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
   namespace :admin do
-    get 'orders/show'
+    resources :orders, only: [:show, :update]
   end
+
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    resources :order_details, only: [:update]
   end
+
   namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
+    resource :customers, only: [:index, :show, :edit, :update]
   end
+
   namespace :admin do
-    get 'items/new'
-    get 'items/index'
-    get 'items/show'
-    get 'items/edit'
+    resources :genres, only: [:index, :edit, :create, :update]
   end
+
   namespace :admin do
-    get 'homes/top'
+    resources :items, only: [:new, :index, :show, :edit, :create, :update]
   end
+
+  namespace :admin do
+    root to: 'homes#top'
+  end
+
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
+
   namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
     get 'orders/complete'
+    post 'orders/comfirm'
+    resources :orders, only: [:new, :index, :show, :create]
   end
+
   namespace :public do
-    get 'cart_items/index'
+    delete 'cart_items/destroy_all'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
   end
+
   namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
     get 'customers/out'
+    get "customers/my_page" =>"customers#show", as: "my_page"
+    patch 'customers/withdraw'
+    resource :customers, only: [:show, :edit, :update]
   end
+
   namespace :public do
-    get 'items/index'
-    get 'items/show'
+    resources :items, only: [:index, :show]
   end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
+
+  # namespace :public do
+    get "/about" => "public/homes#about", as: "about"
+  # end
+
+  root to: 'public/homes#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

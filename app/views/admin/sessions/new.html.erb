@@ -1,26 +1,29 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h2>管理者ログイン</h2>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="col-7">
+    </div>
   </div>
+  <br>
+<%= form_with model: @admin, url: admin_session_path  do |f| %>
+<table align="center">
+  <tbody>
+    <tr>
+      <td><%= f.label :メールアドレス　　　 %></td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 50 %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :パスワード　　　 %></td>
+      <td><%= f.password_field :password, autocomplete: "password", size: 50 %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit "ログイン" %></td>
+    </tr>
+  </tbody>
+</table>
 <% end %>
 
 <%= render "admin/shared/links" %>

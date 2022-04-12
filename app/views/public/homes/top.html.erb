@@ -1,2 +1,30 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-2 px-0">
+      <table align="center">
+        <tr>
+          <th>ジャンル検索</th>
+        </tr>
+        <% @genres.each do |gs| %>
+        <tr>
+          <td><%= gs.name %><td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-10">
+      <div>
+        <div>
+          <br>
+          ようこそながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。<br>
+        </div>
+      </div>
+      <h3>新着商品</h3>
+
+    </div>
+  </div>
+</div>

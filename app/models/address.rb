@@ -1,4 +1,4 @@
 class Address < ApplicationRecord
-  belonngs_to :customers
-  
+  belongs_to :customer
+
 end

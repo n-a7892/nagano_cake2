@@ -1,2 +1,33 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<h5>会員情報編集</h5><br>
+<%= form_with model: @customer, url: public_customers_path, method: :patch do |c| %>
+<table>
+  <tr height="50">
+    <td width="200">氏名</td>
+    <td width="600"><%= c.text_field :last_name %>　　<%= c.text_field :first_name %></td>
+  </tr>
+  <tr height="50">
+    <td>フリガナ</td>
+    <td><%= c.text_field :last_name_kana %>　　<%= c.text_field :first_name_kana %></td>
+  </tr>
+  <tr height="50">
+    <td>郵便番号</td>
+    <td><%= c.text_field :postal_code %></td>
+  </tr>
+  <tr height="50">
+    <td>住所</td>
+    <td><%= c.text_field :address, size: "70" %></td>
+  </tr>
+  <tr height="50">
+    <td>電話番号</td>
+    <td><%= c.text_field :telephone_number %></td>
+  </tr>
+  <tr height="50">
+    <td>メールアドレス</td>
+    <td><%= c.email_field :email %></td>
+  </tr>
+  <tr height="50">
+    <td></td>
+    <td><%= c.submit "　　　編集内容を保存　　　", class: "btn btn-secondary" %>　　　　　　<%= link_to "　退会する　", public_customers_out_path, class: "btn btn-secondary" %></td>
+  </tr>
+</table>
+<% end %>
