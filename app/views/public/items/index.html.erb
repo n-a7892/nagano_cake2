@@ -1,4 +1,5 @@
-<div class="row">
+<div class="container">
+  <div class="row">
     <div class="col-2 px-0">
       <table align="center">
         <tr>
@@ -13,8 +14,16 @@
     </div>
     <div class="col-10">
       <h5><big><strong>商品一覧</strong></big>(全<%= @item_all.count %>件)</h5>
+      <div class="row">
       <% @items.each do |is| %>
-      <%= image_tag is.image %>
+      <div style="margin:10px;">
+      <div><%= image_tag is.get_image(200,200) %></div>
+      <div><%= is.name %></div>
+      <div>¥<%= is.price %></div>
+      </div>
       <% end %>
+      </div>
+      <div style="text-align:center;"><%= paginate @items %></div>
     </div>
   </div>
+</div>
