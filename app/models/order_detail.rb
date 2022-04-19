@@ -1,6 +1,10 @@
 class OrderDetail < ApplicationRecord
-  belongs_to :orders
-  belongs_to :items
+  belongs_to :order
+  belongs_to :item
 
-  enum making_status: { "着手不可": 1, "製作待ち": 2, "製作中": 3, "製作完了": 4 }
+  def subtotal
+    price*amount
+  end
+
+  enum making_status: { "impossible": 0, "waiting": 1, "making": 2, "complete": 3 }
 end

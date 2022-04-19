@@ -17,9 +17,13 @@
       <div class="row">
       <% @items.each do |is| %>
       <div style="margin:10px;">
-      <div><%= image_tag is.get_image(200,200) %></div>
+      <div style="text-align:center; width:200; height:200;">
+      <%= link_to public_item_path(is.id) do %>
+      <%= image_tag is.get_image(200,150)%>
+      <% end %>
+      </div>
       <div><%= is.name %></div>
-      <div>¥<%= is.price %></div>
+      <div>¥<%= is.with_tax_price %></div>
       </div>
       <% end %>
       </div>

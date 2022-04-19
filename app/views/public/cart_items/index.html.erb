@@ -1,2 +1,51 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+<br>
+<div class="row">
+<div class="col-lg-4">
+<h4>ショッピングカート</h4>
+</div>
+<div class="col-lg-8" style="text-align:right;">
+<%= link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete, class: "btn btn-secondary" %>
+</div>
+</div>
+<br>
+<table class="table table-bordered" width="100%">
+    <tr class="table table-active align-middle">
+      <th width="40%">商品名</th>
+      <th width="15%">単価(税込)</th>
+      <th width="15%">数量</th>
+      <th width="15%">小計</th>
+      <th width="15%"></th>
+    </tr>
+    <% @cart_items.each do |cis| %>
+    <tr class="align-middle">
+      <td><%= image_tag cis.item.get_image(50,50) %>   <%= cis.item.name %></td>
+      <td><%= cis.item.with_tax_price.to_s(:delimited) %></td>
+      <%= form_with model: cis, url: public_cart_item_path(cis.id), method: :patch do |ci| %>
+      <td><%= ci.select :amount, *[1..5], prompt: "個数を選択" %> <%= ci.submit "変更", class: "btn btn-secondary" %></td>
+      <% end %>
+      <td>
+        <%= (cis.item.with_tax_price*cis.amount).to_s(:delimited) %>
+        <% @sum += cis.subtotal %>
+      </td>
+      <td>
+        <%= link_to "削除する", public_cart_item_path(cis.id), method: :delete, class: "btn btn-secondary" %>
+      </td>
+    </tr>
+    <% end %>
+</table>
+
+<br>
+<%= link_to "買い物を続ける", public_items_path, class: "btn btn-secondary" %>
+<table class="table table-bordered" style="width:30%;" align="right">
+  <tr>
+    <td class="table table-active" style="width:15%;">合計金額</td>
+    <td style="width:15%;"><%= @sum.to_s(:delimited) %></td>
+  </tr>
+</table>
+
+<br><br>
+<div class="col-12" style="text-align:center;">
+<%= link_to " 情報入力に進む ", new_public_order_path, class: "btn btn-secondary" %>
+</div>
+</div>

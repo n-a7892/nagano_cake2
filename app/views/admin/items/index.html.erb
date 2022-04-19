@@ -1,26 +1,37 @@
-<h4>商品一覧</h4>
-<table style="margin:0 auto;">
-  <tr>
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-  </tr>
-<% @items.each do |is| %>
-  <tr height="50">
-    <td width="100"><%= is.id %></td>
-    <td width="300"><%= link_to is.name, admin_item_path(is.id) %></td>
-    <td width="100"><%= is.price.to_s(:delimited)%></td>
-    <td width="300"><%= is.genre.name %></td>
-    <td width="150">
-      <% if is.is_active %>
-      販売中
-      <% else %>
-      販売停止中
+<div class="container"><br>
+  <div class="row">
+    <div class="col-6">
+      <h4><span class="bg-light">商品一覧</span></h4>
+    </div>
+    <div class="col-6">
+      <%= link_to new_admin_item_path do %>
+      <div class="text-right"><button class="pull-right btn-gray rounded-circle p-0" style="width:2rem; height:2rem;">＋</button></div>
       <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
-<div style="text-align:center; margin:0 auto;"><%= paginate @items %></div>
+    </div>
+  </div>
+    <table class="table" style="margin:0 auto;">
+      <tr class="table table-active">
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    <% @items.each do |is| %>
+      <tr height="50">
+        <td width="100"><%= is.id %></td>
+        <td width="300"><%= link_to is.name, admin_item_path(is.id) %></td>
+        <td width="100"><%= is.price.to_s(:delimited)%></td>
+        <td width="300"><%= is.genre.name %></td>
+        <td width="150">
+          <% if is.is_active %>
+          販売中
+          <% else %>
+          販売停止中
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </table>
+    <div style="text-align:center; margin:0 auto;"><%= paginate @items %></div>
+</div>

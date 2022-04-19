@@ -1,18 +1,26 @@
-<h4>注文履歴一覧</h4>
-<table>
-  <th>
-    <td>購入日時</td>
-    <td>購入者</td>
-    <td>注文個数</td>
-    <td>注文ステータス</td>
-  </th>
-  <%= @orders.each do |os| %>
-  <tr>
-    <td width="150"><%= os.created_at %></td>
-    <td width="150"><%= os.name %></td>
-    <td width="150"><%= os.order_detail.amount %></td>
-    <td width="150"><%= os.status %></td>
-  <tr>
-  <% end %>
-</table>
+<div class="container">
+  <h4>注文履歴一覧</h4>
+  <table class="table">
+    <tr class="table-active">
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </tr>
+    <% @orders.each do |os| %>
+    <tr>
+      <td style="width:25%;"><%= link_to os.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(os.id) %></td>
+      <td style="width:25%;"><%= os.name %></td>
+      <td style="width:25%;">
+        <% @amount_sum = 0 %>
+        <% os.order_details.each do |ods| %>
+        <% @amount_sum += ods.amount %>
+        <% end %>
+        <%= @amount_sum %>
+      </td>
+      <td style="width:25%;"><%= os.status_i18n %></td>
+    <tr>
+    <% end %>
+  </table>
+</div>
 <%= paginate @orders %>
