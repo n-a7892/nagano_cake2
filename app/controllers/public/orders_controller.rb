@@ -50,7 +50,7 @@ class Public::OrdersController < ApplicationController
       @order_detail.item_id = cis.item_id
       @order_detail.price = cis.item.with_tax_price
       @order_detail.amount = cis.amount
-      @order_detail.making_status = 1
+      @order_detail.making_status = 0
       @order_detail.save
     end
     @cart_items.destroy_all

@@ -1,29 +1,29 @@
 <div class="container">
   <h5>マイページ</h5>
   <h5>登録編集　<%= link_to "　編集する　", edit_public_customers_path, class: "btn btn-secondary" %></h5>
-  <table>
+  <table class="table table-bordered" style="width:50%;">
     <tr>
-      <td width="200">氏名</td>
+      <td width="200" class="table-active">氏名</td>
       <td width="600"><%= @customer.last_name %>　<%= @customer.first_name %></td>
     </tr>
     <tr>
-      <td>カナ</td>
+      <td class="table-active">カナ</td>
       <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
     </tr>
     <tr>
-      <td>郵便番号</td>
+      <td class="table-active">郵便番号</td>
       <td><%= @customer.postal_code %></td>
     </tr>
     <tr>
-      <td>住所</td>
+      <td class="table-active">住所</td>
       <td><%= @customer.address %></td>
     </tr>
     <tr>
-      <td>電話番号</td>
+      <td class="table-active">電話番号</td>
       <td><%= @customer.telephone_number %></td>
     </tr>
     <tr>
-      <td>メールアドレス</td>
+      <td class="table-active">メールアドレス</td>
       <td><%= @customer.email %></td>
     </tr>
   </table>

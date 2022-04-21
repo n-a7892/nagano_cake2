@@ -7,6 +7,6 @@
 <div class="row">
   <div style="margin:0 auto;">
     <%= link_to "　退会しない　", public_my_page_path, class: "btn btn-secondary" %>
-    <%= link_to "　退会する　", public_customers_withdraw_path, method: :patch, class: "btn btn-primary" %>
+    <%= link_to "　退会する　", public_customers_withdraw_path, method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-primary" %>
   </div>
 </div>

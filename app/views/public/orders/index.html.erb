@@ -12,7 +12,7 @@
     <% @orders.each do |os| %>
     <tbody>
       <tr>
-        <td class="align-middle"><%= link_to os.created_at.strftime('%Y/%m/%d'), public_order_path(os.id) %></td>
+        <td class="align-middle"><%= os.created_at.strftime('%Y/%m/%d') %></td>
         <td class="align-middle">
           〒<%= os.postal_code %><br>
           <%= os.address %><br>
