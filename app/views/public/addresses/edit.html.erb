@@ -1,18 +1,20 @@
-<h5>配送先編集</h5>
-<br>
-<%= form_with model: @address, url: public_address_path, method: :patch do |a| %>
-<table>
-  <tr>
-    <td><%= a.label :postal_code, "郵便番号（ハイフンなし）" %>　　</td>
-    <td><%= a.text_field :postal_code %></td>
-  </tr>
-  <tr>
-    <td><%= a.label :address, "住所" %></td>
-    <td><%= a.text_field :address, size: 60 %></td>
-  </tr>
-  <tr>
-    <td><%= a.label :name, "宛名" %></td>
-    <td><%= a.text_field :name %>　　　　　　　　　　　　　　　　　　　　<%= a.submit "変更内容を保存", class: "btn btn-secondary" %></td>
-  </tr>
-</table>
-<% end %>
+<div class="container">
+  <h5>配送先編集</h5>
+  <br>
+  <%= form_with model: @address, url: public_address_path, method: :patch do |a| %>
+  <table>
+    <tr>
+      <td><%= a.label :postal_code, "郵便番号（ハイフンなし）" %>　　</td>
+      <td><%= a.text_field :postal_code %></td>
+    </tr>
+    <tr>
+      <td><%= a.label :address, "住所" %></td>
+      <td><%= a.text_field :address, size: 60 %></td>
+    </tr>
+    <tr>
+      <td><%= a.label :name, "宛名" %></td>
+      <td><%= a.text_field :name %>　　　　　　　　　　　　　　　　　　　　<%= a.submit "変更内容を保存", class: "btn btn-secondary" %></td>
+    </tr>
+  </table>
+  <% end %>
+</div>

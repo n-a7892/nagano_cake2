@@ -15,16 +15,32 @@
     </div>
     <div class="col-10">
       <div>
-        <div>
+        <div class="text-left border border-dark" style="width:400px;">
           <br>
           ようこそながのCAKEへ！<br>
           このサイトは、ケーキ販売のECサイトになります。<br>
           会員でない方も商品の閲覧はできますが、<br>
           購入には会員登録が必要になります。<br>
+          <br>
         </div>
-      </div>
+      </div><br>
       <h3>新着商品</h3>
-
+      <div class="row">
+        <% @items.first(4).each do |is| %>
+          <div style="margin:10px;">
+            <div style="text-align:center;">
+              <%= link_to public_item_path(is.id) do %>
+                <%= image_tag is.get_image(200,150)%>
+              <% end %>
+            </div>
+            <div><%= is.name %></div>
+            <div>¥<%= is.with_tax_price %></div>
+          </div>
+        <% end %>
+      </div>
+      <% if @items.count > 4 %>
+      <div class="text-right"><%= link_to "全ての商品を見る>", public_items_path %></div>
+      <% end %>
     </div>
   </div>
 </div>
