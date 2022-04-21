@@ -21,7 +21,8 @@ class Public::CustomersController < ApplicationController
 
   def withdraw
     @customer = Customer.find(current_customer.id)
-    @customer.update(is_active: FALSE)
+    @customer.update(is_active: false)
+    # ログアウト
     redirect_to root_path
   end
 
